@@ -6,13 +6,13 @@
 #    By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 15:08:37 by abaiao-r          #+#    #+#              #
-#    Updated: 2023/10/09 19:54:51 by abaiao-r         ###   ########.fr        #
+#    Updated: 2023/10/09 14:15:57 by abaiao-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -g #-fstandalone-debug -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -g #-fstandalone-debug #-fsanitize=address
 
 # Directories
 SRCDIR = src
@@ -26,7 +26,7 @@ SRCS =  $(SRCDIR)/main.cpp
 OBJS = 	$(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # Targets
-NAME = Array
+NAME = Iter
 
 all: 	$(NAME)
 
@@ -60,6 +60,5 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 
 .PHONY: all clean fclean re run test

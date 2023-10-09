@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:04:13 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/09 16:46:20 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:35:49 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Array
         T &operator[](unsigned int i);
         const T &operator[](unsigned int i) const;
 
+        // Getters
         unsigned int size(void) const;
 };
 

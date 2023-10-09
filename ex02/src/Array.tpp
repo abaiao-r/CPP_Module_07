@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:04:54 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/09 17:31:50 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:42:04 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,18 @@
 
 #include "../includes/Array.hpp"
 
+/* class Array<T>:
+** is a template class, so we need to include the implementation in the header
+** file. This is because the compiler needs to know the implementation of the
+** class in order to compile it. If we were to separate the implementation into
+** a .cpp file, the compiler would not be able to compile it. This is because
+** the compiler does not know what type T is, and therefore cannot compile the
+** class. */
 template <class T>
 class Array;
 
+/* Array<T>::Array(void):
+** default constructor. */
 template <typename T>
 Array<T>::Array(void)
 {
@@ -27,6 +36,8 @@ Array<T>::Array(void)
     this->_arr = new T[0];
 }
 
+/* Array<T>::Array(unsigned int n):
+** parameter constructor. */
 template <typename T>
 Array<T>::Array(unsigned int n)
 {
@@ -36,6 +47,8 @@ Array<T>::Array(unsigned int n)
     this->_arr = new T[n];
 }
 
+/* Array<T>::Array(Array const &src):
+** copy constructor. */
 template <typename T>
 Array<T>::Array(Array const &src)
 {
@@ -49,6 +62,8 @@ Array<T>::Array(Array const &src)
         this->_arr[i] = src._arr[i];
 }
 
+/* Array<T>::~Array(void):
+** destructor. */
 template <typename T>
 Array<T>::~Array(void)
 {
@@ -56,6 +71,8 @@ Array<T>::~Array(void)
     delete [] this->_arr;
 }
 
+/* Array<T> &Array<T>::operator=(Array const &src):
+** assignation operator overload. */
 template <typename T>
 Array<T> &Array<T>::operator=(Array const &src)
 {
@@ -74,41 +91,70 @@ Array<T> &Array<T>::operator=(Array const &src)
     return (*this);
 }
 
+/* T &Array<T>::operator[](unsigned int i):
+** subscript operator overload. An subscript operator overload allows us to
+** access the class as if it were an array. */
 template <typename T>
 T &Array<T>::operator[](unsigned int i)
 {
     if (i >= this->_len)
     {
-        std::cout << BLUE << "Array index out of bounds" << RESET << std::endl;
-        std::cout << BLUE << "Array size is " << this->_len << RESET
-            << std::endl;
-        std::cout << BLUE << "Index is " << i << RESET << std::endl;
+        std::cerr << BLUE << "Array index out of bounds\n";
+        std::cerr << BLUE << "Array size is " << this->_len << " and you are "
+            << "trying to access index " << i << RESET << std::endl;
         throw std::exception();
     }
     return (this->_arr[i]);
 }
 
+/* const T &Array<T>::operator[](unsigned int i) const:
+** const subscript operator overload. */
 template <typename T>
 const T &Array<T>::operator[](unsigned int i) const
 {
     if (i >= this->_len)
     {
-        std::cout << BLUE << "Array index out of bounds" << RESET << std::endl;
-        std::cout << BLUE << "Array size is " << this->_len << RESET
-            << std::endl;
-        std::cout << BLUE << "Index is " << i << RESET << std::endl;
+        std::cerr << BLUE << "Array index out of bounds\n";
+        std::cerr << BLUE << "Array size is " << this->_len << " and you are "
+            << "trying to access index " << i << RESET << std::endl;
         throw std::exception();
     }
     return (this->_arr[i]);
 }
 
+/* unsigned int Array<T>::size(void) const:
+** returns the size of the array. */
 template <typename T>
 unsigned int Array<T>::size(void) const
 {
     return (this->_len);
 }
 
-std::ostream &operator<<(std::ostream &o, Array<int> const &src)
+/* std::ostream &operator<<(std::ostream &o, Array<T> const &src):
+** output stream operator overload. It allows us to print the array using the
+** std::cout function. */
+template <typename T>
+std::ostream &operator<<(std::ostream &o, Array<T> const &src)
+{
+    unsigned int src_len = src.size();
+
+    o << "[";
+    for (unsigned int i = 0; i < src_len; i++)
+    {
+        o << src[i];
+        if (i < src_len - 1)
+            o << ", ";
+    }
+    o << "]";
+    return (o);
+}
+
+
+/* ostream &operator<<(ostream &o, Array<float> const &src):
+** output stream operator overload. It allows us to print the array using the
+** std::cout function. */
+template <typename T>
+std::ostream &operator<<(std::ostream &o, Array<float> const &src)
 {
     unsigned int src_len = src.size();
 
