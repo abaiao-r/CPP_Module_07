@@ -6,7 +6,7 @@
 #    By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 15:08:37 by abaiao-r          #+#    #+#              #
-#    Updated: 2023/10/05 18:59:17 by abaiao-r         ###   ########.fr        #
+#    Updated: 2023/10/09 13:41:04 by abaiao-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS =  $(SRCDIR)/main.cpp
 OBJS = 	$(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # Targets
-NAME = Identify_real_type
+NAME = Start_with_a_few_functions 
 
 all: 	$(NAME)
 
